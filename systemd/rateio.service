@@ -1,0 +1,14 @@
+[Unit]
+Description=Rateio Backend Service
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/opt/rateio-app/backend
+Environment="PATH=/opt/rateio-app/backend/venv/bin"
+ExecStart=/opt/rateio-app/backend/venv/bin/gunicorn -c gunicorn.conf.py app.main:app
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
